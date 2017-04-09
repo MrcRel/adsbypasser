@@ -1,18 +1,16 @@
-$.register({
+_.register({
   rule: {
     host: /\.yfrog\.com$/,
   },
-  ready: function () {
-    'use strict';
-
+  async ready () {
     if (/^\/z/.test(window.location.pathname)) {
-      var i = $('#the-image img');
-      $.openImage(i.src);
+      const i = $('#the-image img');
+      await $.openImage(i.src);
       return;
     }
-    var a = $.$('#continue-link a, #main_image');
+    const a = $.$('#continue-link a, #main_image');
     if (a) {
-      $.openLink('/z' + window.location.pathname);
+      await $.openLink('/z' + window.location.pathname);
       return;
     }
   },
