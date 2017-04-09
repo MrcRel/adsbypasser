@@ -1,14 +1,12 @@
-$.register({
+_.register({
   rule: {
     host: /^imageheli\.com|imgtube\.net|pixliv\.com$/,
     path: /^\/img-([a-zA-Z0-9\-]+)\..+$/,
   },
-  ready: function () {
-    'use strict';
-
-    var a = $.$('a[rel="lightbox"]');
+  async ready () {
+    const a = $.$('a[rel="lightbox"]');
     if (!a) {
-      $.openLink('', {
+      await $.openLink('', {
         post: {
           browser_fingerprint: '',
           ads: '0',
@@ -16,6 +14,6 @@ $.register({
       });
       return;
     }
-    $.openImage(a.href);
+    await $.openImage(a.href);
   },
 });

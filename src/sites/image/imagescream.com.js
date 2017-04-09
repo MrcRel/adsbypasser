@@ -1,4 +1,4 @@
-$.register({
+_.register({
   rule: [
     {
       host: /^imagescream\.com$/,
@@ -19,36 +19,30 @@ $.register({
       path: /^\/.*/,
     },
   ],
-  ready: function () {
-    'use strict';
-
-    var i = $('#shortURL-content img');
-    $.openImage(i.src);
+  async ready () {
+    const i = $('#shortURL-content img');
+    await $.openImage(i.src);
   },
 });
 
-$.register({
+_.register({
   rule: {
     host: /^(imagescream|anonpic)\.com|all-poster\.ru$/,
     query: /^\?v=/,
   },
-  ready: function () {
-    'use strict';
-
-    var i = $('#imagen img');
-    $.openImage(i.src);
+  async ready () {
+    const i = $('#imagen img');
+    await $.openImage(i.src);
   },
 });
 
-$.register({
+_.register({
   rule: {
     host: /^bunnyforum\.org$/,
     query: /^\?v=/,
   },
-  ready: function () {
-    'use strict';
-
-    var i = $('img[title^=Click]');
-    $.openImage(i.src);
+  async ready () {
+    const i = $('img[title^=Click]');
+    await $.openImage(i.src);
   },
 });
