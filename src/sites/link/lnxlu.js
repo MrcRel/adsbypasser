@@ -1,11 +1,9 @@
-$.register({
+_.register({
   rule: {
     host: /^lnx\.lu|url\.fm|z\.gs$/,
   },
-  ready: function () {
-    'use strict';
-
-    var a = $('#clickbtn a');
-    $.openLink(a.href);
+  async ready () {
+    const a = $('#clickbtn a');
+    await $.openLink(a.href);
   },
 });

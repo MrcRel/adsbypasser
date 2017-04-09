@@ -1,29 +1,23 @@
-$.register({
+_.register({
   rule: {
     host: /^linkshrink\.net$/,
     path: /^\/[a-zA-Z0-9]+$/,
   },
-  start: function () {
-    'use strict';
-
+  async start () {
     $.window._impspcabe = 0;
   },
-  ready: function () {
-    'use strict';
-
-    var l = $('#skip .bt');
-    $.openLink(l.href);
+  async ready () {
+    const l = $('#skip .bt');
+    await $.openLink(l.href);
   },
 });
 
-$.register({
+_.register({
   rule: {
     host: /^linkshrink\.net$/,
     path: /=(.+)$/,
   },
-  start: function (m) {
-    'use strict';
-
-    $.openLink(m.path[1]);
+  async start (m) {
+    await $.openLink(m.path[1]);
   },
 });
