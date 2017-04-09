@@ -1,4 +1,4 @@
-$.register({
+_.register({
   rule: [
     {
       host: /^a\.pomf\.se$/,
@@ -13,14 +13,12 @@ $.register({
       query: /^$/,
     },
   ],
-  ready: function () {
-    'use strict';
-
-    var a = $.$('body > a');
+  async ready () {
+    const a = $.$('body > a');
     if (a) {
-      $.openImage(a.href);
+      await $.openImage(a.href);
       return;
     }
-    $.removeNodes('#boxes, iframe');
+    $.remove('#boxes, iframe');
   },
 });
