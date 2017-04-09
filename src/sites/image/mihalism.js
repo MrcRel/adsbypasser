@@ -1,12 +1,7 @@
 (function () {
-  'use strict';
-
-  function helper (m) {
-    $.openImage('/images/' + m.query[1]);
-  }
 
   // mihalism v1
-  $.register({
+  _.register({
     rule: {
       host: [
         /^(hentai-hosting|miragepics|funextra\.hostzi|imgrex|cdn\.javtotal|img3x)\.com$/,
@@ -25,19 +20,19 @@
   });
 
   // dwimg.com
-  $.register({
+  _.register({
     rule: {
       host: /^(dwimg|imgsin|www\.pictureshoster)\.com$/,
       path: /^\/viewer\.php$/,
       query: /file=([^&]+)/,
     },
-    start: function (m) {
-      $.openImage('/files/' + m.query[1]);
+    async start (m) {
+      await $.openImage('/files/' + m.query[1]);
     },
   });
 
   // imageview.me
-  $.register({
+  _.register({
     rule: {
       host: [
         /img(nip|central|cream)\.com$/,
@@ -50,50 +45,54 @@
   });
 
   // overpic.net
-  $.register({
+  _.register({
     rule: [
       'http://www.overpic.net/viewer.php?file=*',
     ],
-    ready: function () {
-      var i = $('#main_img');
-      $.openImage(i.src);
+    async ready () {
+      const i = $('#main_img');
+      await $.openImage(i.src);
     },
   });
 
   // empireload.com
-  $.register({
+  _.register({
     rule: {
       host: /(empireload|loadsanook)\.com$/,
       query: /file=([^&]+)/,
     },
-    start: function (m) {
-      $.openImage('files/' + m.query[1]);
+    async start (m) {
+      await $.openImage('files/' + m.query[1]);
     },
   });
 
   // empireload.com
-  $.register({
+  _.register({
     rule: {
       host: /^dumppix\.com$/,
       path: /^\/viewer\.php$/,
       query: /file=([^&]+)/,
     },
-    start: function (m) {
-      $.openImage('/images/' + m.query[1], {
+    async start (m) {
+      await $.openImage('/images/' + m.query[1], {
         referer: true,
       });
     },
   });
 
-  $.register({
+  _.register({
     rule: {
       host: /^xxxhost\.me$/,
       path: /^\/viewer\d+\.php$/,
       query: /file=([^&]+)/,
     },
-    start: function (m) {
-      $.openImage('files/' + m.query[1]);
+    async start (m) {
+      await $.openImage('files/' + m.query[1]);
     },
   });
+
+  async function helper (m) {
+    await $.openImage('/images/' + m.query[1]);
+  }
 
 })();
