@@ -1,12 +1,10 @@
-$.register({
+_.register({
   rule: {
     host: /^pronpic\.org$/,
   },
-  ready: function () {
-    'use strict';
-
-    var img = $('table.new_table2:nth-child(2) img.link');
-    var url = img.src.replace('th_', '');
-    $.openImage(url);
+  async ready () {
+    const img = $('table.new_table2:nth-child(2) img.link');
+    const url = img.src.replace('th_', '');
+    await $.openImage(url);
   },
 });
