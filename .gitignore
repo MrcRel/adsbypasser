@@ -6,3 +6,4 @@ dest
 .idea/
 *.log
 .save.sh
+build
